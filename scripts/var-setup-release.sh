@@ -160,6 +160,9 @@ hook_in_layer meta-imx/meta-ml
 hook_in_layer meta-nxp-demo-experience
 
 echo "" >> $BUILD_DIR/conf/bblayers.conf
+echo "# Layers from include file" >> $BUILD_DIR/conf/bblayers.conf
+cat ${BSPDIR}/sources/meta-variscite-imx/IncludeExtraLayers.txt >> $BUILD_DIR/conf/bblayers.conf
+echo "" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-browser\"" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-rust\"" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-clang\"" >> $BUILD_DIR/conf/bblayers.conf

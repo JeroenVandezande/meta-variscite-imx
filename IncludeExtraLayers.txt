@@ -1,0 +1,4 @@
+${BSPDIR}/sources/meta-dotnet-core \
+${BSPDIR}/sources/meta-mono \
+${BSPDIR}/sources/meta-tempest-linux \
+${BSPDIR}/sources/meta-java \
