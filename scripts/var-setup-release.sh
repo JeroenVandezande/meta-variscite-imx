@@ -154,7 +154,7 @@ META_FSL_BSP_RELEASE="${CWD}/sources/meta-imx/meta-bsp"
 
 echo "" >> $BUILD_DIR/conf/bblayers.conf
 echo "# Layers from include file" >> $BUILD_DIR/conf/bblayers.conf
-echo "BBLAYERS += \"" >> $BUILD_DIR/conf/bblayers.conf
+echo "BBLAYERS += \" \\" >> $BUILD_DIR/conf/bblayers.conf
 cat ../sources/meta-variscite-imx/IncludeExtraLayers.txt >> $BUILD_DIR/conf/bblayers.conf
 echo "\"" >> $BUILD_DIR/conf/bblayers.conf
 echo "" >> $BUILD_DIR/conf/bblayers.conf
