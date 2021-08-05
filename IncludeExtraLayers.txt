@@ -1,5 +1,4 @@
 ${BSPDIR}/sources/meta-tempest-linux \
 ${BSPDIR}/sources/meta-openembedded/meta-perl \
-${BSPDIR}/sources/meta-openembedded/meta-python \
 ${BSPDIR}/sources/meta-dotnet-core \
 ${BSPDIR}/sources/meta-java
