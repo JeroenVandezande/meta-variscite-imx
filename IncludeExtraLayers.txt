@@ -1,5 +1,7 @@
-${BSPDIR}/sources/meta-openembedded/meta-perl \
-${BSPDIR}/sources/meta-java \
-${BSPDIR}/sources/meta-mono \
-${BSPDIR}/sources/meta-security \
-${BSPDIR}/sources/meta-tempest-linux \
+BBLAYERS += "${BSPDIR}/sources/meta-openembedded/meta-perl"
+BBLAYERS += "${BSPDIR}/sources/meta-java"
+BBLAYERS += "${BSPDIR}/sources/meta-mono"
+BBLAYERS += "${BSPDIR}/sources/meta-security"
+BBLAYERS += "${BSPDIR}/sources/meta-tempest-linux"
+
+DISTRO_FEATURES_append = " security"

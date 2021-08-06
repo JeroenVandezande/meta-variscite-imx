@@ -181,10 +181,8 @@ if [ -d ../sources/meta-ivi ]; then
 fi
 
 echo "" >> $BUILD_DIR/conf/bblayers.conf
-echo "# Layers from include file" >> $BUILD_DIR/conf/bblayers.conf
-echo -n "BBLAYERS += \"" >> $BUILD_DIR/conf/bblayers.conf
+echo "# Settings from include file" >> $BUILD_DIR/conf/bblayers.conf
 cat ../sources/meta-variscite-imx/IncludeExtraLayers.txt >> $BUILD_DIR/conf/bblayers.conf
-echo "\"" >> $BUILD_DIR/conf/bblayers.conf
 echo "" >> $BUILD_DIR/conf/bblayers.conf
 
 echo BSPDIR=$BSPDIR
