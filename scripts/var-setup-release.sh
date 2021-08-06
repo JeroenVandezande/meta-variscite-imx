@@ -152,12 +152,6 @@ fi
 
 META_FSL_BSP_RELEASE="${CWD}/sources/meta-imx/meta-bsp"
 
-echo "" >> $BUILD_DIR/conf/bblayers.conf
-echo "# Layers from include file" >> $BUILD_DIR/conf/bblayers.conf
-echo -n "BBLAYERS += \"" >> $BUILD_DIR/conf/bblayers.conf
-cat ../sources/meta-variscite-imx/IncludeExtraLayers.txt >> $BUILD_DIR/conf/bblayers.conf
-echo "\"" >> $BUILD_DIR/conf/bblayers.conf
-echo "" >> $BUILD_DIR/conf/bblayers.conf
 echo "# i.MX Yocto Project Release layers" >> $BUILD_DIR/conf/bblayers.conf
 hook_in_layer meta-imx/meta-bsp
 hook_in_layer meta-imx/meta-sdk
@@ -185,6 +179,13 @@ if [ -d ../sources/meta-ivi ]; then
     echo "BBLAYERS += \"\${BSPDIR}/sources/meta-ivi/meta-ivi-bsp\"" >> $BUILD_DIR/conf/bblayers.conf
     echo "BBLAYERS += \"\${BSPDIR}/sources/meta-ivi/meta-ivi-test\"" >> $BUILD_DIR/conf/bblayers.conf
 fi
+
+echo "" >> $BUILD_DIR/conf/bblayers.conf
+echo "# Layers from include file" >> $BUILD_DIR/conf/bblayers.conf
+echo -n "BBLAYERS += \"" >> $BUILD_DIR/conf/bblayers.conf
+cat ../sources/meta-variscite-imx/IncludeExtraLayers.txt >> $BUILD_DIR/conf/bblayers.conf
+echo "\"" >> $BUILD_DIR/conf/bblayers.conf
+echo "" >> $BUILD_DIR/conf/bblayers.conf
 
 echo BSPDIR=$BSPDIR
 echo BUILD_DIR=$BUILD_DIR
