@@ -1,3 +1,5 @@
-${BSPDIR}/sources/meta-tempest-linux \
 ${BSPDIR}/sources/meta-openembedded/meta-perl \
-${BSPDIR}/sources/meta-java
+${BSPDIR}/sources/meta-java \
+${BSPDIR}/sources/meta-dotnet-core \
+${BSPDIR}/sources/meta-mono \
+${BSPDIR}/sources/meta-tempest-linux
