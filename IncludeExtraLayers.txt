@@ -2,4 +2,5 @@ ${BSPDIR}/sources/meta-openembedded/meta-perl \
 ${BSPDIR}/sources/meta-java \
 ${BSPDIR}/sources/meta-dotnet-core \
 ${BSPDIR}/sources/meta-mono \
+${BSPDIR}/sources/meta-security \
 ${BSPDIR}/sources/meta-tempest-linux \
