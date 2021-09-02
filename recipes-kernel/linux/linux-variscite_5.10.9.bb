@@ -20,7 +20,7 @@ DEFAULT_PREFERENCE = "1"
 SRCBRANCH = "yocto_gatesgarth_tempest"
 KERNEL_SRC ?= "git://github.com/JeroenVandezande/linux-imx;protocol=git"
 SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
-SRCREV = "7931fe099981a3e9d4827f60d78a26361f1240fa"
+SRCREV = "b07aee2324f63501864e1b56a21702e4a8ee4e90"
 LINUX_VERSION = "5.10.9"
 
 KERNEL_CONFIG_COMMAND = "oe_runmake_call -C ${S} CC="${KERNEL_CC}" O=${B} olddefconfig"
