@@ -1,4 +1,5 @@
 BBLAYERS += "${BSPDIR}/sources/meta-openembedded/meta-perl"
+BBLAYERS += "${BSPDIR}/sources/meta-openembedded/meta-oe"
 BBLAYERS += "${BSPDIR}/sources/meta-java"
 BBLAYERS += "${BSPDIR}/sources/meta-mono"
 BBLAYERS += "${BSPDIR}/sources/meta-tempest-linux"
