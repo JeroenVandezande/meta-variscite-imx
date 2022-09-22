@@ -193,7 +193,7 @@ echo "Recovery rootfs: ${YOCTO_RECOVERY_ROOTFS_BASE_IN_NAME}"
 echo "================================================"
 check_device $node
 echo "================================================"
-read -p "Press Enter to continue"
+#read -p "Press Enter to continue"
 
 # Call sfdisk to get total card size
 if [ "${AUTO_FILL_SD}" -eq "1" ]; then
