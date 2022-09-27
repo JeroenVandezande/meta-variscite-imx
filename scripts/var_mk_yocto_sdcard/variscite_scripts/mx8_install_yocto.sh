@@ -314,7 +314,7 @@ if [[ $swupdate == 1 ]] ; then
 
 	ROOTFS2PART=2
 	DATAPART=3
-	DATA_SIZE=3000
+	DATA_SIZE=100
 fi
 
 check_images
