@@ -47,6 +47,7 @@
 				data-lanes = <1 2>;
 				clock-lanes = <0>;
 			};
+		};
 	};
 
 	/* DS1337 RTC module */
@@ -77,8 +78,9 @@
 				data-lanes = <1 2>;
 				clock-lanes = <0>;
 			};
-	};
+		};
 
+	};
 };
 
 /* Console */
