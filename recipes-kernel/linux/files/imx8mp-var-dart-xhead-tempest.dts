@@ -26,6 +26,14 @@
 		};
 	};
 
+	extcon_usb1: extcon_usb1 {
+		compatible = "linux,extcon-usb-gpio";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_extcon>;
+		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+
 };
 
 &i2c2 {
@@ -110,14 +118,6 @@
 	pinctrl-0 = <&pinctrl_uart4>;
 	status = "okay";
 };
-
-extcon_usb1: extcon_usb1 {
-		compatible = "linux,extcon-usb-gpio";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_extcon>;
-		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-		status = "okay";
-	};
 
 /* LVDS */
 &lcdif2 {
