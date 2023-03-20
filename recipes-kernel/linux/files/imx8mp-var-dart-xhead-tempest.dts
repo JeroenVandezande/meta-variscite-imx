@@ -141,10 +141,6 @@
 	status = "disabled";
 };
 
-&can0 {
-	status = "disabled";
-};
-
 &ldb_phy {
 	status = "disabled";
 };
