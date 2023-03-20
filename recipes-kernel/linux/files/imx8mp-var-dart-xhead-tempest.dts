@@ -34,7 +34,19 @@
 		pinctrl-0 = <&pinctrl_csi0>;
 		powerdown-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;
 		reset-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
+		assigned-clock-rates = <24000000>;
+		csi_id = <0>;
+		mclk = <24000000>;
+		mclk_source = <0>;
+		mipi_csi;
 		status = "okay";
+
+		port {
+			ov5640_mipi_0_ep: endpoint {
+				remote-endpoint = <&mipi_csi0_ep>;
+				data-lanes = <1 2>;
+				clock-lanes = <0>;
+			};
 	};
 
 	/* DS1337 RTC module */
@@ -52,7 +64,19 @@
 		pinctrl-0 = <&pinctrl_csi1>;
 		powerdown-gpios = <&gpio4 9 GPIO_ACTIVE_HIGH>;
 		reset-gpios = <&gpio4 12 GPIO_ACTIVE_LOW>;
+		assigned-clock-rates = <24000000>;
+		csi_id = <1>;
+		mclk = <24000000>;
+		mclk_source = <0>;
+		mipi_csi;
 		status = "okay";
+
+		port {
+			ov5640_mipi_1_ep: endpoint {
+				remote-endpoint = <&mipi_csi1_ep>;
+				data-lanes = <1 2>;
+				clock-lanes = <0>;
+			};
 	};
 
 };
