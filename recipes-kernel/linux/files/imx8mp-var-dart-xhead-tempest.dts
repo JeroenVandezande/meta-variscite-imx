@@ -87,9 +87,6 @@
 &uart4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart4>;
-	/delete-property/ assigned-clocks = <&clk IMX8MP_CLK_UART4>;
-	/delete-property/ assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-	/delete-property/ uart-has-rtscts;
 	status = "okay";
 };
 
