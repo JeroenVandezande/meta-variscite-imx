@@ -1,0 +1,274 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2019 NXP
+ * Copyright 2020-2021 Variscite Ltd.
+ * Copyright 2023 Gold Standard Diagnostics
+ */
+
+#include "imx8mp-var-dart.dtsi"
+
+/ {
+	model = "Variscite DART-MX8M-PLUS on Torrent X-Head";
+
+	chosen {
+		stdout-path = &uart1;
+	};
+
+	gpio-leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_gpio_leds>;
+		status = "okay";
+		emmc {
+			label = "eMMC";
+			gpios = <&gpio4 17 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "mmc2";
+		};
+	};
+
+};
+
+&i2c2 {
+	ov5640_mipi0: ov5640_mipi@3c {
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_csi0>;
+		powerdown-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
+		status = "okay";
+	};
+
+	/* DS1337 RTC module */
+	rtc@68 {
+		compatible = "dallas,ds1337";
+		reg = <0x68>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_rtc>;
+		interrupt-parent = <&gpio1>;
+		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
+		wakeup-source;
+		status = "okay";
+	};
+
+};
+
+&i2c4 {
+	ov5640_mipi1: ov5640_mipi@3c {
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_csi1>;
+		powerdown-gpios = <&gpio4 9 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&gpio4 12 GPIO_ACTIVE_LOW>;
+		status = "okay";
+	};
+
+};
+
+/* Console */
+&uart1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart1>;
+	status = "okay";
+};
+
+/* MCU on X-Head */
+&uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart2>;
+	status = "okay";
+};
+
+/* MCU on Multichannel Washer */
+&uart3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart3>;
+	status = "okay";
+};
+
+/* BLDC Motor Controller on X-Head */
+&uart4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart4>;
+	/delete-property/ assigned-clocks = <&clk IMX8MP_CLK_UART4>;
+	/delete-property/ assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
+	/delete-property/ uart-has-rtscts;
+	status = "okay";
+};
+
+/* LVDS */
+&lcdif2 {
+	status = "disabled";
+};
+
+&pcie {
+	status = "disabled";
+};
+
+&usb3_phy0 {
+	fsl,phy-tx-vref-tune = <0xe>;
+	fsl,phy-tx-preemp-amp-tune = <3>;
+	fsl,phy-tx-vboost-level = <5>;
+	fsl,phy-comp-dis-tune = <7>;
+	fsl,pcs-tx-deemph-3p5db = <0x21>;
+	fsl,phy-pcs-tx-swing-full = <0x7f>;
+	status = "okay";
+};
+
+&usb3_0 {
+	status = "okay";
+};
+
+&usb_dwc3_0 {
+	dr_mode = "host";
+	hnp-disable;
+	srp-disable;
+	adp-disable;
+	extcon = <&extcon_usb1>;
+	status = "okay";
+};
+
+&usb3_phy1 {
+	fsl,phy-tx-preemp-amp-tune = <3>;
+	fsl,phy-tx-vref-tune = <0xb>;
+	status = "okay";
+};
+
+&usb3_1 {
+	status = "okay";
+};
+
+&usb_dwc3_1 {
+	dr_mode = "host";
+	status = "okay";
+};
+
+&usdhc2 {
+	status = "disabled";
+};
+
+&can0 {
+	status = "disabled";
+};
+
+&ldb_phy {
+	status = "disabled";
+};
+
+&mipi_dsi {
+	status = "disabled";
+};
+
+&gpio1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_hdmi>;
+
+	hdmi_on_hog {
+		gpio-hog;
+		gpios = <5 0>;
+		output-low;
+		line-name = "hdmi_on";
+	};
+};
+
+&fec {
+	status = "disabled";
+};
+
+&eqos {
+	status = "disabled";
+};
+
+&wm8904 {
+	status = "disabled";
+};
+
+&usdhc1 {
+	status = "disabled";
+};
+
+&iomuxc {
+	pinctrl_flexcan1: flexcan1grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_SAI5_RXD2__CAN1_RX					0x154
+			MX8MP_IOMUXC_SAI5_RXD1__CAN1_TX					0x154
+		>;
+	};
+
+	pinctrl_flexcan2: flexcan2grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_SAI5_MCLK__CAN2_RX					0x154
+			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX					0x154
+		>;
+	};
+
+	pinctrl_extcon: extcongrp {
+		fsl,pins = <
+			MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10				0x10
+		>;
+	};
+
+	pinctrl_can: cangrp {
+		fsl,pins = <
+			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06				0x1c6
+		>;
+	};
+
+	pinctrl_csi0: csi0grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_SAI1_RXD6__GPIO4_IO08				0x10
+			MX8MP_IOMUXC_UART4_RXD__GPIO5_IO28				0x10
+		>;
+	};
+
+	pinctrl_pcie: pciegrp {
+		fsl,pins = <
+			MX8MP_IOMUXC_SAI1_RXD5__GPIO4_IO07				0x40
+		>;
+	};
+
+	pinctrl_csi1: csi1grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_SAI1_RXD7__GPIO4_IO09				0x10
+			MX8MP_IOMUXC_SAI1_TXD0__GPIO4_IO12				0x10
+		>;
+	};
+
+	pinctrl_hdmi: hdmigrp {
+		fsl,pins = <
+			MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05				0xc0
+		>;
+	};
+
+	pinctrl_gpio_leds: ledgrp {
+		fsl,pins = <
+			MX8MP_IOMUXC_SAI1_TXD5__GPIO4_IO17				0xc6
+		>;
+	};
+
+	pinctrl_uart1: uart1grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX				0x40
+			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX				0x40
+		>;
+	};
+
+	pinctrl_uart2: uart2grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x40
+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x40
+		>;
+	};
+
+	pinctrl_uart3: uart3grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX				0x40
+			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX				0x40
+		>;
+	};
+
+	pinctrl_uart4: uart4grp {
+		fsl,pins = <
+			MX8MP_IOMUXC_ECSPI2_SCLK__UART4_DCE_RX				0x40
+			MX8MP_IOMUXC_ECSPI2_MOSI__UART4_DCE_TX				0x40
+			MX8MP_IOMUXC_SD1_DATA7__GPIO2_IO09					0x106 /*pull-up disables BT_BUF */
+		>;
+	};
+};
