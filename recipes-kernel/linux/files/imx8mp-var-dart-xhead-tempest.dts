@@ -106,7 +106,7 @@
 
 /* BLDC Motor Controller on X-Head */
 &uart4 {
-	pinctrl-names = "default";extcon-usb-gpio
+	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart4>;
 	status = "okay";
 };
